@@ -1,4 +1,7 @@
-using InventoryManagementBlazor.Data;
+using InventoryManagement.Plugins.InMemory;
+using IventoryManagement.UseCases.Iventories;
+using IventoryManagement.UseCases.Iventories.Interfaces;
+using IventoryManagement.UseCases.PluginInterfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IInventoryRepositoy, InventoryRepositoy>();
+builder.Services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
 
 var app = builder.Build();
 
