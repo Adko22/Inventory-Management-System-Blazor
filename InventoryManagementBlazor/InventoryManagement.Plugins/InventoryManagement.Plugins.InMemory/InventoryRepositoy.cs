@@ -46,14 +46,16 @@ namespace InventoryManagement.Plugins.InMemory
 
         public async Task<Inventory> GetInvetoryByIdAsync(int inventoryId)
         {
-            var inv = _inventories.First(x => x.InventoryId == inventoryId);
-            var newInv = new Inventory
+            var inv = _inventories.FirstOrDefault(x => x.InventoryId == inventoryId);
+            var newInv = new Inventory();
+            
+            if(inv!= null)
             {
-                InventoryId = inv.InventoryId,
-                InventoryName = inv.InventoryName,
-                Price = inv.Price,
-                Quantity = inv.Quantity
-            };
+                newInv.InventoryId = inv.InventoryId;
+                newInv.InventoryName = inv.InventoryName;
+                newInv.Price = inv.Price;
+                newInv.Quantity = inv.Quantity;
+            }
 
             return await Task.FromResult(newInv);
         }

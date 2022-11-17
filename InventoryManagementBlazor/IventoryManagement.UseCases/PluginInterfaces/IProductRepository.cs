@@ -13,5 +13,9 @@ namespace IventoryManagement.UseCases.PluginInterfaces
         Task<IEnumerable<Product>> GetProductsByName(string name);
 
         Task AddProductAsync(Product product);
+
+        Task<Product?> GetProductByIdAsync(int productId);
+
+        Task UpdateProductAsync(Product product);
     }
 }
