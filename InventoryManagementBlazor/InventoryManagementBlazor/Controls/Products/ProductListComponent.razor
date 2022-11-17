@@ -1,4 +1,4 @@
-﻿@inject IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+﻿@inject IViewProductsByNameUseCase ViewProductsByName
 
 <table class="table">
     <thead>
@@ -10,18 +10,20 @@
         </tr>
     </thead>
     <tbody>
-     <InventoryListItemComponent Inventories="listInventories"></InventoryListItemComponent>
+     <ProductsListItemComponent Products="listProducts"></ProductsListItemComponent>
     </tbody>
 </table>
 
+
 @code {
-    private List<Inventory> listInventories = new List<Inventory>();
+
+    private List<Product> listProducts = new List<Product>();
 
     [Parameter]
     public string SearchTerm { get; set; } = string.Empty;
 
     protected override async Task OnParametersSetAsync()
     {
-        listInventories = (await ViewInventoriesByNameUseCase.ExecuteAsync(this.SearchTerm)).ToList();
+        listProducts = (await ViewProductsByName.ExecuteAsync(this.SearchTerm)).ToList();
     }
 }

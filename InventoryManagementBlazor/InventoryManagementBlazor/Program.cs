@@ -2,6 +2,8 @@ using InventoryManagement.Plugins.InMemory;
 using IventoryManagement.UseCases.Iventories;
 using IventoryManagement.UseCases.Iventories.Interfaces;
 using IventoryManagement.UseCases.PluginInterfaces;
+using IventoryManagement.UseCases.Products;
+using IventoryManagement.UseCases.Products.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -12,10 +14,15 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddSingleton<IInventoryRepositoy, InventoryRepositoy>();
+builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+
 builder.Services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
 builder.Services.AddTransient<IAddInventoryUseCase, AddInventoryUseCase>();
 builder.Services.AddTransient<IEditInventoryUseCase, EditInventoryUseCase>();
 builder.Services.AddTransient<IViewInvenotryByIdUseCase, ViewInvenotryByIdUseCase>();
+
+builder.Services.AddTransient<IViewProductsByNameUseCase, ViewProductsByNameUseCase>();
+builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 
 var app = builder.Build();
 
