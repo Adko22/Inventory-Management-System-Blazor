@@ -12,6 +12,21 @@ namespace InventoryManagement.Plugins.InMemory
     {
         public List<InventoryTransaction> _inventoryTransactions = new List<InventoryTransaction>();
 
+        public void ProduceAsync(string productionNumber, Inventory inventory, int quantityToCosume, string doneBy, decimal price)
+        {
+            _inventoryTransactions.Add(new InventoryTransaction
+            {
+                ProductionNumber = productionNumber,
+                InventoryId = inventory.InventoryId,
+                QuantityBefore = inventory.Quantity,
+                ActivityType = InventoryTransactionType.ProduceProduct,
+                QuantityAfter = inventory.Quantity - quantityToCosume,
+                TransactionDate = DateTime.UtcNow,
+                DoneBy = doneBy,
+                UnitPrice = price,
+            });
+        }
+
         public void PurchaseAsync(string poNumber, Inventory inventory, int quantity, string doneBy, decimal price)
         {
             _inventoryTransactions.Add(new InventoryTransaction

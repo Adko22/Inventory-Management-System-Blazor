@@ -20,7 +20,7 @@ namespace IventoryManagement.UseCases.Activities
             _inventoryRepository = inventoryRepository;
         }
 
-        public async Task ExecutAsync(string poNumber, Inventory inventory, int quantity, string doneBy)
+        public async Task ExecuteAsync(string poNumber, Inventory inventory, int quantity, string doneBy)
         {
             _inventoryTransanctionRepository.PurchaseAsync(poNumber, inventory, quantity, doneBy, inventory.Price);
 

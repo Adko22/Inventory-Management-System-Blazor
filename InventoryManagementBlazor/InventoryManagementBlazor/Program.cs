@@ -18,6 +18,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<IInventoryRepositoy, InventoryRepositoy>();
 builder.Services.AddSingleton<IProductRepository, ProductRepository>();
 builder.Services.AddSingleton<IInventoryTransactionRepositoy, InventoryTransactionRepository>();
+builder.Services.AddSingleton<IProductTransactionRepository, ProductTransactionRepository>();
 
 
 builder.Services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
@@ -31,6 +32,7 @@ builder.Services.AddTransient<IViewProductByIdUseCase, ViewProductByIdUseCase>()
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 
 builder.Services.AddTransient<IPurchaseInventoryUseCase, PurchaseInventoryUseCase>();
+builder.Services.AddTransient<IProduceProductUseCase, ProduceProductUseCase>();
 
 var app = builder.Build();
 

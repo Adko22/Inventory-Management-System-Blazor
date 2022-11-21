@@ -8,7 +8,7 @@ namespace InventoryManagementBlazor.ViewModels
         public string PONumber { get; set; } = string.Empty;
 
         [Required]
-        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "You have to select and inventory.")]
+        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "You have to select an inventory.")]
         public int InventoryId { get; set; }
 
         [Required]

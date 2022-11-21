@@ -4,6 +4,6 @@ namespace IventoryManagement.UseCases.Activities.Interfaces
 {
     public interface IPurchaseInventoryUseCase
     {
-        Task ExecutAsync(string poNumber, Inventory inventory, int quantity, string doneBy);
+        Task ExecuteAsync(string poNumber, Inventory inventory, int quantity, string doneBy);
     }
 }
