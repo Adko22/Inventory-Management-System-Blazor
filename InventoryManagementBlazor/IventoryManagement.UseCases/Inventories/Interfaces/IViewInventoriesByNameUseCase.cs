@@ -1,6 +1,6 @@
 ﻿using IventoryManagement.CoreBusiness;
 
-namespace IventoryManagement.UseCases.Iventories.Interfaces
+namespace IventoryManagement.UseCases.Inventories.Interfaces
 {
     public interface IViewInventoriesByNameUseCase
     {

@@ -1,8 +1,8 @@
 ﻿using IventoryManagement.CoreBusiness;
 
-namespace IventoryManagement.UseCases.Iventories.Interfaces
+namespace IventoryManagement.UseCases.Inventories.Interfaces
 {
-    public interface IAddInventoryUseCase
+    public interface IEditInventoryUseCase
     {
         Task ExecuteAsync(Inventory inventory);
     }
