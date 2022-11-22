@@ -2,8 +2,6 @@
 @inject IViewProductsByNameUseCase ViewProductsByNameUseCase
 @inject IProduceProductUseCase ProduceProductUseCase
 @inject IViewProductByIdUseCase ViewProductByIdUseCase
-
-
 @inject IJSRuntime JSRuntime
 
 <h3>Produce Product</h3>
@@ -64,9 +62,9 @@
         selectedProduct = null;
     }
 
-    private List<ItemViewModel>? SearchProduct(string name)
+    private async Task <List<ItemViewModel>?> SearchProduct(string name)
     {
-        var list = ViewProductsByNameUseCase.ExecuteAsync(name).GetAwaiter().GetResult();
+        var list = await ViewProductsByNameUseCase.ExecuteAsync(name);
 
         if (list == null)
         {

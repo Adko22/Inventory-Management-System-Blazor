@@ -4,21 +4,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementBlazor.ViewModels
 {
-    public class ProduceViewModel
+    public class SellViewModel
     {
         [Required]
-        public string ProductionNumber { get; set; } = string.Empty;
+        public string SalesOrderNumber { get; set; } = string.Empty;
 
         [Required]
-        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "You have to select a product.")]
         public int ProductId { get; set; }
 
         [Required]
         [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Quantity has to be greater or equal to 1.")]
-        [Produce_EnsureEnoughInventoryQuantity]
-        public int QuantityToProduce { get; set; }
+        [Sell_EnsureEnoughProductQuantity]
+        public int QuantityToSell { get; set; }
+
+        [Required]
+        [Range(minimum: 0, maximum: int.MaxValue, ErrorMessage = "Price has to be greater or equal to 0.")]
+        public decimal UnitPrice { get; set; }
 
         public Product? Product { get; set; } = null;
-
     }
 }

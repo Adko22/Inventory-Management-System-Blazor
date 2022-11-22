@@ -23,6 +23,7 @@ namespace InventoryManagementBlazor.ViewModelsValidations
                     }
                 }
             }
+
             return ValidationResult.Success;
         }
     }

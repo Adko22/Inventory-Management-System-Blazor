@@ -56,5 +56,22 @@ namespace InventoryManagement.Plugins.InMemory
                 DoneBy = doneBy,
             });
         }
+
+        public Task SellProductAsync(string salesOrderNumber, Product product, int quantity, decimal unitPrice, string doneBy)
+        {
+            _productTransactions.Add(new ProductTransaction
+            {
+                ActivityType = ProductTransactionType.SellProduct,
+                SONumber = salesOrderNumber,
+                ProductId = product.ProductId,
+                QuantityBefore = product.Quantity,
+                QuantityAfter = product.Quantity - quantity,
+                TransactionDate = DateTime.UtcNow,
+                DoneBy = doneBy,
+                UnitPrice = unitPrice
+            });
+
+            return Task.CompletedTask;
+        }
     }
 }
