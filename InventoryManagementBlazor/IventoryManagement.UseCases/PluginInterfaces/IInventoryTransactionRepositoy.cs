@@ -6,5 +6,7 @@ namespace IventoryManagement.UseCases.PluginInterfaces
     {
         void PurchaseAsync(string poNumber, Inventory inventory, int quantity, string doneBy, decimal price);
         void ProduceAsync(string productionNumber, Inventory inventory, int quantityToCosume, string doneBy, decimal price);
+        Task<IEnumerable<InventoryTransaction>> GetInventoryTransactionsAsync(string inventoryName, 
+            DateTime? dateFrom, DateTime? dateTo, InventoryTransactionType? transactionType);
     }
 }
