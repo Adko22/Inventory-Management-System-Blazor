@@ -1,10 +1,10 @@
 ﻿@page "/purchase"
-
 @inject IPurchaseInventoryUseCase PurchaseInventoryUseCase
 @inject IViewInventoriesByNameUseCase ViewInventoryByNameUseCase
 @inject IViewInvenotryByIdUseCase ViewInventoryByIdUseCase
-
 @inject IJSRuntime JSRuntime
+
+@attribute [Authorize(Policy = "Purchasers")]
 
 <h3>Purchase Inventory</h3>
 <br />
@@ -47,6 +47,20 @@
 
 
 @code {
+
+    private AuthenticationState authenticationState;
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationStateTask != null)
+        {
+            authenticationState = await authenticationStateTask;
+        }
+    }
+
     private PurchaseViewModel purchaseViewModel = new PurchaseViewModel();
 
     private Inventory? selectedInventory = null;
@@ -63,11 +77,14 @@
 
     private async Task Purchase()
     {
-        await PurchaseInventoryUseCase.ExecuteAsync(
-            purchaseViewModel.PONumber,
-            selectedInventory,
-            purchaseViewModel.QuantityToPurchase, "Frank"
-        );
+        if (selectedInventory != null && authenticationState != null
+            && !string.IsNullOrWhiteSpace(authenticationState.User?.Identity?.Name))
+        {
+            await PurchaseInventoryUseCase.ExecuteAsync(
+                  purchaseViewModel.PONumber,
+                  selectedInventory,
+                  purchaseViewModel.QuantityToPurchase, authenticationState.User.Identity.Name);
+        }
 
         purchaseViewModel = new PurchaseViewModel();
         selectedInventory = null;

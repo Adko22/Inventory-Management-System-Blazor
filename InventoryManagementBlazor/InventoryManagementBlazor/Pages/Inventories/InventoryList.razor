@@ -2,6 +2,8 @@
 @using static InventoryManagementBlazor.Controls.Common.AutoCompleteComponent;
 @inject NavigationManager NavigationManager
 
+@attribute [Authorize(Policy = "Inventory")]
+
 <h3>Inventory List</h3>
 <br />
 <SearchInventoryComponent 

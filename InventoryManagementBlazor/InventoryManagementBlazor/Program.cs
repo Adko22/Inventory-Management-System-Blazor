@@ -1,6 +1,7 @@
 using InventoryManagement.EFCoreSqlServer;
 using InventoryManagement.Plugins.EFCoreSqlServer;
 using InventoryManagement.Plugins.InMemory;
+using InventoryManagementBlazor.Data;
 using IventoryManagement.UseCases.Activities;
 using IventoryManagement.UseCases.Activities.Interfaces;
 using IventoryManagement.UseCases.Inventories;
@@ -13,13 +14,39 @@ using IventoryManagement.UseCases.Reports.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Hosting.StaticWebAssets;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var constr = builder.Configuration.GetConnectionString("InventoryManagement");
+
+//configure authorizations
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireClaim("Department", "Administration"));
+    options.AddPolicy("Inventory", policy => policy.RequireClaim("Department", "InventoryManagement"));
+    options.AddPolicy("Sales", policy => policy.RequireClaim("Department", "Sales"));
+    options.AddPolicy("Purchasers", policy => policy.RequireClaim("Department", "Purchasing"));
+    options.AddPolicy("Productions", policy => policy.RequireClaim("Department", "ProductionManagement"));
+});
+
+
+//Configure EF core for Identity
+builder.Services.AddDbContext<AccountDbContext>(options =>
+{
+    options.UseSqlServer(constr);
+});
+
+//Configure Identity
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = false;
+}).AddEntityFrameworkStores<AccountDbContext>();
+
 
 builder.Services.AddDbContextFactory<IMSContex>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("InventoryManagement"));
+    options.UseSqlServer(constr);
 });
 
 // Add services to the container.
@@ -81,6 +108,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

@@ -49,6 +49,7 @@
                     <th>Unit Price</th>
                     <th>PO#</th>
                     <th>Prodcution#</th>
+                    <th>Done By</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,11 +72,15 @@
                         <td>@it.QuantityAfter</td>
                         @if(it.ActivityType== InventoryTransactionType.PurchaseInventory)
                         {
-                        <td>@it.UnitPrice.ToString("c")</td>
-                            
+                        <td>@it.UnitPrice.ToString("c")</td>                     
+                        }
+                        else
+                        {
+                            <td></td>
                         }
                         <td>@it.PONumber</td>
                         <td>@it.ProductionNumber</td>
+                        <td>@it.DoneBy</td>
                     </tr>
                 }
             </tbody>

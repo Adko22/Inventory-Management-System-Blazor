@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InventoryManagement.Plugins
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Plugins.InMemory", "InventoryManagement.Plugins\InventoryManagement.Plugins.InMemory\InventoryManagement.Plugins.InMemory.csproj", "{E29F8D76-814A-4409-AF6C-277CD8A5AAFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.EFCoreSqlServer", "InventoryManagement.Plugins\InventoryManagement.EFCoreSqlServer\InventoryManagement.EFCoreSqlServer.csproj", "{001E3F4C-0B6E-4D83-8BC5-4B3530F8FC95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.EFCoreSqlServer", "InventoryManagement.Plugins\InventoryManagement.EFCoreSqlServer\InventoryManagement.EFCoreSqlServer.csproj", "{001E3F4C-0B6E-4D83-8BC5-4B3530F8FC95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
